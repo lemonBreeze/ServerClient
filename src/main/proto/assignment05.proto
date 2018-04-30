@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package de.fhws.fiw.pvs.grpc;
+
+option java_package = "de.fhws.fiw.pvs.assignment05";
+option java_outer_classname = "PersonManagement";
+
+//
+// Request / Response
+//
+
+message SearchRequest {
+    string lastname = 1;
+}
+
+message Person {
+    string firstname = 1;
+    string lastname = 2;
+    int64 birthday = 3;
+}
+
+message CreateReply {
+    Person person = 1;
+}
+
+message SearchResponse {
+    repeated Person person = 1;
+}
+
+//
+// Service
+//
+
+service PersonManagementService {
+    rpc createPerson (Person) returns (CreateReply) {
+    }
+    rpc search (SearchRequest) returns (SearchResponse) {
+    }
+    rpc listAll (SearchRequest) returns (SearchResponse) {
+    }
+}
