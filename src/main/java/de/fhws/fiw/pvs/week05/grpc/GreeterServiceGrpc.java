@@ -1,10 +1,9 @@
 package de.fhws.fiw.pvs.week05.grpc;
 
+import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
@@ -27,8 +26,17 @@ public final class GreeterServiceGrpc {
           io.grpc.MethodDescriptor.MethodType.UNARY,
           generateFullMethodName(
               "de.fhws.fiw.pvs.grpc.GreeterService", "getGreeting"),
-          io.grpc.protobuf.ProtoUtils.marshaller( de.fhws.fiw.pvs.week05.grpc.Greeter.Request.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller( de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.getDefaultInstance()));
+          io.grpc.protobuf.ProtoUtils.marshaller(de.fhws.fiw.pvs.week05.grpc.Greeter.Request.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.getDefaultInstance()));
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<de.fhws.fiw.pvs.week05.grpc.Greeter.Request,
+      de.fhws.fiw.pvs.week05.grpc.Greeter.Reply> METHOD_GET_ANOTHER_GREETING =
+      io.grpc.MethodDescriptor.create(
+          io.grpc.MethodDescriptor.MethodType.UNARY,
+          generateFullMethodName(
+              "de.fhws.fiw.pvs.grpc.GreeterService", "getAnotherGreeting"),
+          io.grpc.protobuf.ProtoUtils.marshaller(de.fhws.fiw.pvs.week05.grpc.Greeter.Request.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -59,9 +67,16 @@ public final class GreeterServiceGrpc {
 
     /**
      */
-    public void getGreeting( de.fhws.fiw.pvs.week05.grpc.Greeter.Request request,
+    public void getGreeting(de.fhws.fiw.pvs.week05.grpc.Greeter.Request request,
         io.grpc.stub.StreamObserver<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_GET_GREETING, responseObserver);
+    }
+
+    /**
+     */
+    public void getAnotherGreeting(de.fhws.fiw.pvs.week05.grpc.Greeter.Request request,
+        io.grpc.stub.StreamObserver<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_GET_ANOTHER_GREETING, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -73,6 +88,13 @@ public final class GreeterServiceGrpc {
                 de.fhws.fiw.pvs.week05.grpc.Greeter.Request,
                 de.fhws.fiw.pvs.week05.grpc.Greeter.Reply>(
                   this, METHODID_GET_GREETING)))
+          .addMethod(
+            METHOD_GET_ANOTHER_GREETING,
+            asyncUnaryCall(
+              new MethodHandlers<
+                de.fhws.fiw.pvs.week05.grpc.Greeter.Request,
+                de.fhws.fiw.pvs.week05.grpc.Greeter.Reply>(
+                  this, METHODID_GET_ANOTHER_GREETING)))
           .build();
     }
   }
@@ -97,10 +119,18 @@ public final class GreeterServiceGrpc {
 
     /**
      */
-    public void getGreeting( de.fhws.fiw.pvs.week05.grpc.Greeter.Request request,
+    public void getGreeting(de.fhws.fiw.pvs.week05.grpc.Greeter.Request request,
         io.grpc.stub.StreamObserver<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_GET_GREETING, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getAnotherGreeting(de.fhws.fiw.pvs.week05.grpc.Greeter.Request request,
+        io.grpc.stub.StreamObserver<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_GET_ANOTHER_GREETING, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -124,9 +154,16 @@ public final class GreeterServiceGrpc {
 
     /**
      */
-    public de.fhws.fiw.pvs.week05.grpc.Greeter.Reply getGreeting( de.fhws.fiw.pvs.week05.grpc.Greeter.Request request) {
+    public de.fhws.fiw.pvs.week05.grpc.Greeter.Reply getGreeting(de.fhws.fiw.pvs.week05.grpc.Greeter.Request request) {
       return blockingUnaryCall(
           getChannel(), METHOD_GET_GREETING, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public de.fhws.fiw.pvs.week05.grpc.Greeter.Reply getAnotherGreeting(de.fhws.fiw.pvs.week05.grpc.Greeter.Request request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_GET_ANOTHER_GREETING, getCallOptions(), request);
     }
   }
 
@@ -155,9 +192,18 @@ public final class GreeterServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_GET_GREETING, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply> getAnotherGreeting(
+        de.fhws.fiw.pvs.week05.grpc.Greeter.Request request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_GET_ANOTHER_GREETING, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_GET_GREETING = 0;
+  private static final int METHODID_GET_ANOTHER_GREETING = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -177,7 +223,11 @@ public final class GreeterServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_GET_GREETING:
-          serviceImpl.getGreeting(( de.fhws.fiw.pvs.week05.grpc.Greeter.Request) request,
+          serviceImpl.getGreeting((de.fhws.fiw.pvs.week05.grpc.Greeter.Request) request,
+              (io.grpc.stub.StreamObserver<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply>) responseObserver);
+          break;
+        case METHODID_GET_ANOTHER_GREETING:
+          serviceImpl.getAnotherGreeting((de.fhws.fiw.pvs.week05.grpc.Greeter.Request) request,
               (io.grpc.stub.StreamObserver<de.fhws.fiw.pvs.week05.grpc.Greeter.Reply>) responseObserver);
           break;
         default:
@@ -214,6 +264,7 @@ public final class GreeterServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new GreeterServiceDescriptorSupplier())
               .addMethod(METHOD_GET_GREETING)
+              .addMethod(METHOD_GET_ANOTHER_GREETING)
               .build();
         }
       }

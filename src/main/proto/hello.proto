@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package de.fhws.fiw.pvs.grpc;
 
-option java_package = "de.fhws.fiw.pvs.grpc";
+option java_package = "de.fhws.fiw.pvs.week05.grpc";
 option java_outer_classname = "Greeter";
 
 //
@@ -24,5 +24,7 @@ message Reply {
 
 service GreeterService {
     rpc getGreeting (Request) returns (Reply) {
+    }
+    rpc getAnotherGreeting (Request) returns (Reply) {
     }
 }

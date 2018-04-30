@@ -169,7 +169,7 @@ public final class Greeter {
       if (!(obj instanceof de.fhws.fiw.pvs.week05.grpc.Greeter.Request)) {
         return super.equals(obj);
       }
-      de.fhws.fiw.pvs.week05.grpc.Greeter.Request other = ( de.fhws.fiw.pvs.week05.grpc.Greeter.Request) obj;
+      de.fhws.fiw.pvs.week05.grpc.Greeter.Request other = (de.fhws.fiw.pvs.week05.grpc.Greeter.Request) obj;
 
       boolean result = true;
       result = result && getName()
@@ -254,7 +254,7 @@ public final class Greeter {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder( de.fhws.fiw.pvs.week05.grpc.Greeter.Request prototype) {
+    public static Builder newBuilder(de.fhws.fiw.pvs.week05.grpc.Greeter.Request prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -287,7 +287,7 @@ public final class Greeter {
                 de.fhws.fiw.pvs.week05.grpc.Greeter.Request.class, de.fhws.fiw.pvs.week05.grpc.Greeter.Request.Builder.class);
       }
 
-      // Construct using de.fhws.fiw.pvs.grpc.Greeter.Request.newBuilder()
+      // Construct using de.fhws.fiw.pvs.week05.grpc.Greeter.Request.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -361,14 +361,14 @@ public final class Greeter {
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof de.fhws.fiw.pvs.week05.grpc.Greeter.Request) {
-          return mergeFrom(( de.fhws.fiw.pvs.week05.grpc.Greeter.Request)other);
+          return mergeFrom((de.fhws.fiw.pvs.week05.grpc.Greeter.Request)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom( de.fhws.fiw.pvs.week05.grpc.Greeter.Request other) {
+      public Builder mergeFrom(de.fhws.fiw.pvs.week05.grpc.Greeter.Request other) {
         if (other == de.fhws.fiw.pvs.week05.grpc.Greeter.Request.getDefaultInstance()) return this;
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
@@ -390,7 +390,7 @@ public final class Greeter {
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = ( de.fhws.fiw.pvs.week05.grpc.Greeter.Request) e.getUnfinishedMessage();
+          parsedMessage = (de.fhws.fiw.pvs.week05.grpc.Greeter.Request) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -672,7 +672,7 @@ public final class Greeter {
       if (!(obj instanceof de.fhws.fiw.pvs.week05.grpc.Greeter.Reply)) {
         return super.equals(obj);
       }
-      de.fhws.fiw.pvs.week05.grpc.Greeter.Reply other = ( de.fhws.fiw.pvs.week05.grpc.Greeter.Reply) obj;
+      de.fhws.fiw.pvs.week05.grpc.Greeter.Reply other = (de.fhws.fiw.pvs.week05.grpc.Greeter.Reply) obj;
 
       boolean result = true;
       result = result && getGreeting()
@@ -757,7 +757,7 @@ public final class Greeter {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder( de.fhws.fiw.pvs.week05.grpc.Greeter.Reply prototype) {
+    public static Builder newBuilder(de.fhws.fiw.pvs.week05.grpc.Greeter.Reply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -790,7 +790,7 @@ public final class Greeter {
                 de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.class, de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.Builder.class);
       }
 
-      // Construct using de.fhws.fiw.pvs.grpc.Greeter.Reply.newBuilder()
+      // Construct using de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -864,14 +864,14 @@ public final class Greeter {
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof de.fhws.fiw.pvs.week05.grpc.Greeter.Reply) {
-          return mergeFrom(( de.fhws.fiw.pvs.week05.grpc.Greeter.Reply)other);
+          return mergeFrom((de.fhws.fiw.pvs.week05.grpc.Greeter.Reply)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom( de.fhws.fiw.pvs.week05.grpc.Greeter.Reply other) {
+      public Builder mergeFrom(de.fhws.fiw.pvs.week05.grpc.Greeter.Reply other) {
         if (other == de.fhws.fiw.pvs.week05.grpc.Greeter.Reply.getDefaultInstance()) return this;
         if (!other.getGreeting().isEmpty()) {
           greeting_ = other.greeting_;
@@ -893,7 +893,7 @@ public final class Greeter {
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = ( de.fhws.fiw.pvs.week05.grpc.Greeter.Reply) e.getUnfinishedMessage();
+          parsedMessage = (de.fhws.fiw.pvs.week05.grpc.Greeter.Reply) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1041,10 +1041,12 @@ public final class Greeter {
     java.lang.String[] descriptorData = {
       "\n\013hello.proto\022\024de.fhws.fiw.pvs.grpc\"\027\n\007R" +
       "equest\022\014\n\004name\030\001 \001(\t\"\031\n\005Reply\022\020\n\010greetin" +
-      "g\030\002 \001(\t2]\n\016GreeterService\022K\n\013getGreeting" +
-      "\022\035.de.fhws.fiw.pvs.grpc.Request\032\033.de.fhw" +
-      "s.fiw.pvs.grpc.Reply\"\000B\037\n\024de.fhws.fiw.pv" +
-      "s.grpcB\007Greeterb\006proto3"
+      "g\030\002 \001(\t2\261\001\n\016GreeterService\022K\n\013getGreetin" +
+      "g\022\035.de.fhws.fiw.pvs.grpc.Request\032\033.de.fh" +
+      "ws.fiw.pvs.grpc.Reply\"\000\022R\n\022getAnotherGre" +
+      "eting\022\035.de.fhws.fiw.pvs.grpc.Request\032\033.d" +
+      "e.fhws.fiw.pvs.grpc.Reply\"\000B&\n\033de.fhws.f" +
+      "iw.pvs.week05.grpcB\007Greeterb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

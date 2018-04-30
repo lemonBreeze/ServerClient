@@ -22,7 +22,9 @@ public class TcpClient
 		System.out.println( "INPUT: " );
 		final String input = inFromUser.readLine( );
 
-		outToServer.writeBytes( input + "\n" );
+		final String secondParameter = "second";
+
+		outToServer.writeBytes( input + "#" + secondParameter + "\n" );
 		final String output = inFromServer.readLine( );
 
 		System.out.println( "RESPONSE FROM SERVER: " + output );
