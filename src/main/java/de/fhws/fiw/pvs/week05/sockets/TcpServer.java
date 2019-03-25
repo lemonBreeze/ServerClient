@@ -32,6 +32,7 @@ public class TcpServer
 			bufferedWriter.append( output ).append( '\n' );
 			bufferedWriter.flush( );
 			bufferedWriter.close( );
+			socket.close( );
 		}
 	}
 }
