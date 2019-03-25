@@ -1,4 +1,4 @@
-package de.fhws.fiw.pvs.week05.sockets;
+package de.fhws.fiw.pvs.week05.sockets.step1;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
