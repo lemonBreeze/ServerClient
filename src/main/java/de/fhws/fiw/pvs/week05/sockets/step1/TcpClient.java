@@ -1,8 +1,8 @@
 package de.fhws.fiw.pvs.week05.sockets.step1;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 /**
@@ -15,14 +15,16 @@ public class TcpClient
 		final BufferedReader inFromUser = new BufferedReader( new InputStreamReader( System.in ) );
 		final Socket clientSocket = new Socket( "localhost", 6789 );
 
-		final DataOutputStream outToServer = new DataOutputStream( clientSocket.getOutputStream( ) );
-		final BufferedReader inFromServer =
-			new BufferedReader( new InputStreamReader( clientSocket.getInputStream( ) ) );
+		final OutputStreamWriter outToServer = new OutputStreamWriter( clientSocket.getOutputStream( ) );
+		final InputStreamReader inputStreamReader = new InputStreamReader( clientSocket.getInputStream( ) );
+		final BufferedReader inFromServer = new BufferedReader( inputStreamReader );
 
 		System.out.println( "INPUT: " );
 		final String input = inFromUser.readLine( );
 
-		outToServer.writeBytes( input + "\n" );
+		outToServer.append( input ).append( '\n' );
+		outToServer.flush( );
+
 		final String output = inFromServer.readLine( );
 
 		System.out.println( "RESPONSE FROM SERVER: " + output );

@@ -21,8 +21,8 @@ public class TcpServer
 			final Socket socket = serverSocket.accept( );
 			final InputStreamReader inputStreamReader = new InputStreamReader( socket.getInputStream( ) );
 			final BufferedReader inFromClient = new BufferedReader( inputStreamReader );
-
 			final String input = inFromClient.readLine( );
+
 			System.out.println( "Received from Client: " + input );
 
 			final String output = input.toUpperCase( );
