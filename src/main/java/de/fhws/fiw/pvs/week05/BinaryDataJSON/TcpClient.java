@@ -1,4 +1,4 @@
-package de.fhws.fiw.pvs.week05.multiThreaded;
+package de.fhws.fiw.pvs.week05.BinaryDataJSON;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -36,5 +36,6 @@ public class TcpClient
 		clientSocket.close( );
 		return output;
 	}
+
 
 }

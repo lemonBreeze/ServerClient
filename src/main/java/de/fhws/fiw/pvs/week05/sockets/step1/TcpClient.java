@@ -12,6 +12,12 @@ public class TcpClient
 {
 	public static void main( final String[] argv ) throws Exception
 	{
+		System.out.println(sendMessage(42, "James"));
+		System.out.println(sendMessage(39, "Penny"));
+	}
+
+	private static String sendMessage(final int value,final String message) throws Exception
+	{
 		final BufferedReader inFromUser = new BufferedReader( new InputStreamReader( System.in ) );
 		final Socket clientSocket = new Socket( "localhost", 6789 );
 
@@ -19,16 +25,17 @@ public class TcpClient
 		final InputStreamReader inputStreamReader = new InputStreamReader( clientSocket.getInputStream( ) );
 		final BufferedReader inFromServer = new BufferedReader( inputStreamReader );
 
-		System.out.println( "INPUT: " );
-		final String input = inFromUser.readLine( );
+		String input = message + "," + Integer.toString(value);
+		//System.out.println( "INPUT: " );
+		//final String input = inFromUser.readLine( );
 
 		outToServer.append( input ).append( '\n' );
 		outToServer.flush( );
 
 		final String output = inFromServer.readLine( );
-
-		System.out.println( "RESPONSE FROM SERVER: " + output );
 		clientSocket.close( );
+		return output;
 	}
+
 
 }
