@@ -9,10 +9,9 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Map;
+import java.util.Base64;
 
-/**
- * Created by braunpet on 04.04.17.
- */
+
 public class TcpServer
 {
 	public static void main( final String[] args ) throws Exception
@@ -29,15 +28,21 @@ public class TcpServer
 			final Genson genson = new Genson( );
 			System.out.println( "Received from Client: " + input );
 
-			final String output = input.toUpperCase( );
-			final Map<String, Object> inMap = genson.deserialize( output, Map.class );
+
+			byte[] decodeBytes = Base64.getDecoder().decode(input);
+			String decoded = new String(decodeBytes);
+
+
+			final Map<String, Object> inMap = genson.deserialize( decoded, Map.class );
+
+
 			System.out.println( "RECEIVED FROM CLIENT: value = " + inMap.get( "VALUE" ) );
 			System.out.println( "RECEIVED FROM CLIENT: message = " + inMap.get( "MESSAGE" ) );
 			System.out.println( "RECEIVED FROM CLIENT: binary = " + inMap.get( "BINARY" ) );
 
 			final OutputStreamWriter outputStreamWriter = new OutputStreamWriter( socket.getOutputStream( ) );
 			final BufferedWriter bufferedWriter = new BufferedWriter( outputStreamWriter );
-			bufferedWriter.append( output ).append( '\n' );
+			bufferedWriter.append( decoded ).append( '\n' );
 			bufferedWriter.flush( );
 			bufferedWriter.close( );
 			inFromClient.close( );

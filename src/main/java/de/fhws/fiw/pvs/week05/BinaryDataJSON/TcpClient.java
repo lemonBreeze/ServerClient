@@ -8,18 +8,17 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Base64;
 
-/**
- * Created by braunpet on 04.04.17.
- */
+
 public class TcpClient
 {
 	public static void main( final String[] argv ) throws Exception
 	{
-		sendMessage( 22, "James" , "0101110");
+		sendMessage( 22, "James" , "Paul");
 	}
 
-	public static void sendMessage( final int value, final String message, final String binary) throws Exception
+	public static void sendMessage( final int value, final String message, final String person) throws Exception
 	{
 		final Socket clientSocket = new Socket( "localhost", 6789 );
 
@@ -30,14 +29,17 @@ public class TcpClient
 		final Map<String, Object> map = new HashMap( );
 		map.put( "value", value );
 		map.put( "message", message );
-		map.put("binary", binary);
+		map.put("person", person);
 
 		final Genson genson = new Genson( );
 		final String json = genson.serialize( map );
 
+		String output2 = Base64.getEncoder().encodeToString(json.getBytes());
+
+
 		System.out.println( json );
 
-		outToServer.append( json ).append( '\n' );
+		outToServer.append( output2 ).append( '\n' );
 		outToServer.flush( );
 
 		final String output = inFromServer.readLine( );

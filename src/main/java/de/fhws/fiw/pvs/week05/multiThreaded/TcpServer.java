@@ -7,9 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by braunpet on 04.04.17.
- */
+
 public class TcpServer extends Thread
 {
 	ServerSocket serverSocket = null;
@@ -60,7 +58,6 @@ public class TcpServer extends Thread
 				{
 					bufferedWriter.close();
 					inFromClient.close();
-					socket.close();
 				}
 				catch(Exception e)
 				{
@@ -92,8 +89,10 @@ public class TcpServer extends Thread
 				} catch(Exception e) {
 					System.out.println("Exception found on accept. Ignoring. Stack Trace :");
 					e.printStackTrace();
+
 				}
 			}
+
 
 
 
