@@ -31,14 +31,16 @@ public class TcpServer
 
 			byte[] decodeBytes = Base64.getDecoder().decode(input);
 			String decoded = new String(decodeBytes);
+			System.out.println(decoded);
 
 
+			decoded = decoded.toUpperCase();
 			final Map<String, Object> inMap = genson.deserialize( decoded, Map.class );
 
 
 			System.out.println( "RECEIVED FROM CLIENT: value = " + inMap.get( "VALUE" ) );
 			System.out.println( "RECEIVED FROM CLIENT: message = " + inMap.get( "MESSAGE" ) );
-			System.out.println( "RECEIVED FROM CLIENT: binary = " + inMap.get( "BINARY" ) );
+			System.out.println( "RECEIVED FROM CLIENT: person = " + inMap.get( "PERSON" ) );
 
 			final OutputStreamWriter outputStreamWriter = new OutputStreamWriter( socket.getOutputStream( ) );
 			final BufferedWriter bufferedWriter = new BufferedWriter( outputStreamWriter );

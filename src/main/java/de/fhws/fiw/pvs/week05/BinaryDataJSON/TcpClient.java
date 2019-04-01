@@ -33,11 +33,8 @@ public class TcpClient
 
 		final Genson genson = new Genson( );
 		final String json = genson.serialize( map );
-
-		String output2 = Base64.getEncoder().encodeToString(json.getBytes());
-
-
-		System.out.println( json );
+		String output2 = Base64.getEncoder().withoutPadding().encodeToString(json.getBytes());
+		System.out.println(output2);
 
 		outToServer.append( output2 ).append( '\n' );
 		outToServer.flush( );
@@ -47,7 +44,7 @@ public class TcpClient
 		final Map<String, Object> inMap = genson.deserialize( output, Map.class );
 		System.out.println( "RESPONSE FROM SERVER: value = " + inMap.get( "VALUE" ) );
 		System.out.println( "RESPONSE FROM SERVER: message = " + inMap.get( "MESSAGE" ) );
-		System.out.println( "RESPONSE FROM SERVER: binary = " + inMap.get( "BINARY" ) );
+		System.out.println( "RESPONSE FROM SERVER: person = " + inMap.get( "PERSON" ) );
 		clientSocket.close( );
 	}
 }
