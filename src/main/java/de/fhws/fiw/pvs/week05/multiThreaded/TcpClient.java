@@ -5,45 +5,62 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-/**
- * Created by braunpet on 04.04.17.
- */
-public class TcpClient
+
+public class TcpClient extends Thread
 {
-	public static void main( final String[] argv ) throws Exception
+	Socket clientSocket = null;
+	int value;
+	String message;
+
+	public TcpClient(int value, String message)
 	{
-		System.out.println(sendMessage(42, "James"));
-		System.out.println(sendMessage(39, "Penny"));
+		this.value= value;
+		this.message = message;
 	}
 
-	private static String sendMessage(final int value,final String message) throws Exception
+	@Override
+	public void run()
 	{
-		final BufferedReader inFromUser = new BufferedReader( new InputStreamReader( System.in ) );
-		final Socket clientSocket = new Socket( "localhost", 6789 );
-		final Socket clientSocket2 = new Socket( "localhost", 6789 );
+		try
+		{
+				final BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+				clientSocket = new Socket("localhost", 6789);
+				final OutputStreamWriter outToServer = new OutputStreamWriter(clientSocket.getOutputStream());
+				final InputStreamReader inputStreamReader = new InputStreamReader(clientSocket.getInputStream());
+				final BufferedReader inFromServer = new BufferedReader(inputStreamReader);
+
+				String input = message + "," + Integer.toString(value);
+
+				outToServer.append(input).append('\n');
+				outToServer.flush();
 
 
-		final OutputStreamWriter outToServer = new OutputStreamWriter( clientSocket.getOutputStream( ) );
-		final InputStreamReader inputStreamReader = new InputStreamReader( clientSocket.getInputStream( ) );
-		final BufferedReader inFromServer = new BufferedReader( inputStreamReader );
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			try
+			{
+				clientSocket.close();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+	};
 
-		final OutputStreamWriter outToServer2 = new OutputStreamWriter( clientSocket2.getOutputStream( ) );
-		final InputStreamReader inputStreamReader2 = new InputStreamReader( clientSocket2.getInputStream( ) );
-		final BufferedReader inFromServer2 = new BufferedReader( inputStreamReader2 );
+	public static void main( final String[] argv ) throws Exception
+	{
+		TcpClient tcp1 = new TcpClient(1, "Client");
+		TcpClient tcp2 = new TcpClient(2, "Client");
+		TcpClient tcp3 = new TcpClient(3, "Client");
 
-		String input = message + "," + Integer.toString(value);
-		//System.out.println( "INPUT: " );
-		//final String input = inFromUser.readLine( );
-
-		outToServer.append( input ).append( '\n' );
-		outToServer2.append( input ).append( '\n' );
-		outToServer2.flush( );
-		outToServer.flush( );
-
-
-		final String output = inFromServer.readLine( );
-		clientSocket.close( );
-		return output;
+		tcp1.start();
+		tcp3.start();
+		tcp2.start();
 	}
 
 

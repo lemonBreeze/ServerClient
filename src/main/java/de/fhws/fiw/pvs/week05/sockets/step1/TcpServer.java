@@ -7,9 +7,6 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by braunpet on 04.04.17.
- */
 public class TcpServer
 {
 	public static void main( final String[] args ) throws Exception
@@ -33,6 +30,7 @@ public class TcpServer
 			bufferedWriter.flush( );
 			bufferedWriter.close( );
 			inFromClient.close( );
+			Thread.sleep(10000);
 			socket.close( );
 		}
 	}

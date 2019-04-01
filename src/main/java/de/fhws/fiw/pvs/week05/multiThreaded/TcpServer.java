@@ -8,7 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class TcpServer extends Thread
+public class TcpServer
 {
 	ServerSocket serverSocket = null;
 	BufferedReader inFromClient = null;
@@ -18,7 +18,6 @@ public class TcpServer extends Thread
 	class clientServerThread extends Thread
 	{
 		Socket socket = null;
-		boolean m_bRunThread = true;
 
 		public clientServerThread()
 		{
@@ -38,33 +37,19 @@ public class TcpServer extends Thread
 				final InputStreamReader inputStreamReader = new InputStreamReader(socket.getInputStream());
 				inFromClient = new BufferedReader(inputStreamReader);
 				final String input = inFromClient.readLine();
-
+				Thread.sleep(10000);
 				System.out.println("Received from Client: " + input);
 
-				final String[] inputs = input.split(",");
-				final String output = input.toUpperCase();
 
 				final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(socket.getOutputStream());
 				bufferedWriter = new BufferedWriter(outputStreamWriter);
-				bufferedWriter.append(output).append('\n');
+				bufferedWriter.append(input).append('\n');
 				bufferedWriter.flush();
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
-			finally {
-				try
-				{
-					bufferedWriter.close();
-					inFromClient.close();
-				}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-
 		}
 	}
 
@@ -103,7 +88,6 @@ public class TcpServer extends Thread
 	public static void main( final String[] args )
 	{
 			TcpServer server = new TcpServer();
-
 	}
 
 }
