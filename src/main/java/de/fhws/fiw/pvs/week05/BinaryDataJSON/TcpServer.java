@@ -37,10 +37,9 @@ public class TcpServer
 			decoded = decoded.toUpperCase();
 			final Map<String, Object> inMap = genson.deserialize( decoded, Map.class );
 
-
+			System.out.println( "RESPONSE FROM SERVER: map2 = " + inMap.get( "MAP2" ) );
 			System.out.println( "RECEIVED FROM CLIENT: value = " + inMap.get( "VALUE" ) );
 			System.out.println( "RECEIVED FROM CLIENT: message = " + inMap.get( "MESSAGE" ) );
-			System.out.println( "RECEIVED FROM CLIENT: person = " + inMap.get( "PERSON" ) );
 
 			final OutputStreamWriter outputStreamWriter = new OutputStreamWriter( socket.getOutputStream( ) );
 			final BufferedWriter bufferedWriter = new BufferedWriter( outputStreamWriter );

@@ -15,10 +15,16 @@ public class TcpClient
 {
 	public static void main( final String[] argv ) throws Exception
 	{
-		sendMessage( 22, "James" , "Paul");
+		int value = 2;
+		String message = "c";
+		Map<String, Object> input = new HashMap();
+		input.put( "value", value );
+		input.put( "message", message );
+
+				sendMessage( 22, "James" , input);
 	}
 
-	public static void sendMessage( final int value, final String message, final String person) throws Exception
+	public static void sendMessage( final int value, final String message, final Map<String, Object> map2) throws Exception
 	{
 		final Socket clientSocket = new Socket( "localhost", 6789 );
 
@@ -27,9 +33,11 @@ public class TcpClient
 		final BufferedReader inFromServer = new BufferedReader( inputStreamReader );
 
 		final Map<String, Object> map = new HashMap( );
+
 		map.put( "value", value );
 		map.put( "message", message );
-		map.put("person", person);
+		map.put("map2", map2);
+
 
 		final Genson genson = new Genson( );
 		final String json = genson.serialize( map );
@@ -42,9 +50,11 @@ public class TcpClient
 		final String output = inFromServer.readLine( );
 
 		final Map<String, Object> inMap = genson.deserialize( output, Map.class );
+
 		System.out.println( "RESPONSE FROM SERVER: value = " + inMap.get( "VALUE" ) );
 		System.out.println( "RESPONSE FROM SERVER: message = " + inMap.get( "MESSAGE" ) );
-		System.out.println( "RESPONSE FROM SERVER: person = " + inMap.get( "PERSON" ) );
+		System.out.println( "RESPONSE FROM SERVER: map2 = " + inMap.get( "MAP2" ) );
+
 		clientSocket.close( );
 	}
 }
